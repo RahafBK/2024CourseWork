@@ -2,7 +2,7 @@
 
 import torch.nn as nn
 import torchvision.models as tvmodels
-
+from transformers import ViTForImageClassification
 
 __all__ = ["mobilenet_v3_small", "vgg16"]
 
@@ -60,3 +60,25 @@ def mobilenet_v3_small(num_classes, loss={"xent"}, pretrained=True, **kwargs):
 
 # Define any models supported by torchvision bellow
 # https://pytorch.org/vision/0.11/models.html
+
+def vgg19(num_classes, loss={"xent"}, pretrained=True, **kwargs):
+    model = TorchVisionModel(
+        "vgg19",
+        num_classes=num_classes,
+        loss=loss,
+        pretrained=pretrained,
+        **kwargs,
+    )
+    return model
+
+
+
+def vit_base_patch16_224(num_classes, loss={"xent"}, pretrained=True, **kwargs):
+    if pretrained:
+        model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
+        model.classifier = nn.Linear(model.classifier.in_features, num_classes)
+    else:
+        pass
+
+    return model
+
