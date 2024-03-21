@@ -4,7 +4,7 @@ import torch.nn as nn
 import torchvision.models as tvmodels
 from transformers import ViTForImageClassification
 
-__all__ = ["mobilenet_v3_small", "vgg16"]
+__all__ = ["mobilenet_v3_small", "vgg16", "vgg19", "ViT"]
 
 
 class TorchVisionModel(nn.Module):
