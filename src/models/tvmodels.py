@@ -73,7 +73,7 @@ def vgg19(num_classes, loss={"xent"}, pretrained=True, **kwargs):
 
 
 
-def vit_base_patch16_224(num_classes, loss={"xent"}, pretrained=True, **kwargs):
+def ViT(num_classes, loss={"xent"}, pretrained=True, **kwargs):
     if pretrained:
         model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
         model.classifier = nn.Linear(model.classifier.in_features, num_classes)
